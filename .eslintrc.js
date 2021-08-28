@@ -3,6 +3,7 @@ module.exports = {
     rules: {
         indent: ['error', 4],
         'no-console': 'off',
+        'no-plusplus': 'off',
     },
     globals: {
         describe: 'readonly',
