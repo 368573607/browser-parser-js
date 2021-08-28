@@ -9,13 +9,13 @@
     "build": "webpack"
   },
   "dependencies": {
-    "ua-parser-js": "^0.7.28",
-    "uglifyjs-webpack-plugin": "^2.2.0"
+    "ua-parser-js": "^0.7.28"
   },
   "devDependencies": {
     "eslint": "^7.2.0",
     "eslint-config-airbnb-base": "14.2.1",
     "eslint-plugin-import": "^2.22.1",
+    "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^5.51.1",
     "webpack-cli": "^4.8.0"
   }
