@@ -11,7 +11,6 @@ module.exports = {
         filename: '[name].js',
     },
     devtool: 'source-map',
-    mode: 'none',
     optimization: {
         minimizer: [new UglifyJsPlugin({
             include: 'browser-parser.min.js',
