@@ -4,5 +4,8 @@
   "main": "./dist/browser-parser.js",
   "repository": "git@github.com:368573607/browser-parser.js.git",
   "author": "xuhuading(mac) <xuhuading@foxmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "ua-parser-js": "^0.7.28"
+  }
 }
