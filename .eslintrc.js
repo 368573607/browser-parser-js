@@ -4,4 +4,8 @@ module.exports = {
         indent: ['error', 4],
         'no-console': 'off',
     },
+    global: {
+        describe: true,
+        it: true,
+    },
 };
