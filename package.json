@@ -5,6 +5,9 @@
   "repository": "git@github.com:368573607/browser-parser.js.git",
   "author": "xuhuading(mac) <xuhuading@foxmail.com>",
   "license": "MIT",
+  "scripts": {
+    "build": "webpack"
+  },
   "dependencies": {
     "ua-parser-js": "^0.7.28",
     "uglifyjs-webpack-plugin": "^2.2.0"
