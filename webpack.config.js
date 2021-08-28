@@ -7,14 +7,14 @@ module.exports = {
         'browser-parser.min': path.resolve(__dirname, 'src', 'index.js'),
     },
     output: {
-        path: './dist',
+        path: path.resolve(__dirname, 'dist'),
         filename: '[name].js',
     },
     devtool: 'source-map',
+    mode: 'none',
     optimization: {
         minimizer: [new UglifyJsPlugin({
             include: 'browser-parser.min.js',
-            minimize: true,
         })],
     },
 };
