@@ -6,6 +6,8 @@
   "author": "xuhuading(mac) <xuhuading@foxmail.com>",
   "license": "MIT",
   "dependencies": {
-    "ua-parser-js": "^0.7.28"
+    "ua-parser-js": "^0.7.28",
+    "webpack": "^5.51.1",
+    "webpack-cli": "^4.8.0"
   }
 }
