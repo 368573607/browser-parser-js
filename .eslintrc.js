@@ -5,7 +5,7 @@ module.exports = {
         'no-console': 'off',
     },
     global: {
-        describe: true,
-        it: true,
+        describe: 'readonly',
+        it: 'readonly',
     },
 };
