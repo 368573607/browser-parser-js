@@ -4,7 +4,7 @@ module.exports = {
         indent: ['error', 4],
         'no-console': 'off',
     },
-    global: {
+    globals: {
         describe: 'readonly',
         it: 'readonly',
     },
