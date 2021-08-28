@@ -1,5 +1,6 @@
 const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -16,4 +17,5 @@ module.exports = {
             include: 'browser-parser.min.js',
         })],
     },
+    plugins: [new CleanWebpackPlugin()],
 };
