@@ -90,7 +90,11 @@ function browserParser(rules, href = 'https://browsehappy.com/', order = false) 
     }
 
     if (!rules.every((x) => (x.name === userBrowser.name)) && order) {
-        return true;
+        if (!notHaveWindow) {
+            window.location.href = href;
+        } else {
+            return true;
+        }
     }
     return false;
 }
