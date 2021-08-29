@@ -1,5 +1,7 @@
 const { expect } = require('chai');
-const { getVersion, reVersion, rangeVersion, versionParser } = require('../src/core');
+const {
+    getVersion, reVersion, rangeVersion, compareUa, browserParser,
+} = require('../src/core');
 
 describe('getVersion', () => {
     it('1.2.3的版本验证', () => {
@@ -46,5 +48,38 @@ describe('rangeVersion', () => {
     });
     it('比较9和9', () => {
         expect(rangeVersion('9', '9')).to.equal(true);
+    });
+});
+
+describe('compareUa', () => {
+    it('8违规', () => {
+        expect(compareUa('8')).to.equal(true);
+    });
+    it('9违规', () => {
+        expect(compareUa('9')).to.equal(true);
+    });
+    it('10合法', () => {
+        expect(compareUa('10')).to.equal(false);
+    });
+    it('9.0.1合法', () => {
+        expect(compareUa('9.0.1')).to.equal(false);
+    });
+});
+
+describe('browserParser', () => {
+    it('8违规', () => {
+        expect(browserParser([{ name: 'Chrome', version: '50.3.4' }, { name: 'IE', version: '8' }])).to.equal(true);
+    });
+    it('9违规', () => {
+        expect(browserParser([{ name: 'IE', version: '9' }])).to.equal(true);
+    });
+    it('10合法', () => {
+        expect(browserParser([{ name: 'IE', version: '10' }])).to.equal(false);
+    });
+    it('9.0.1合法', () => {
+        expect(browserParser([{ name: 'IE', version: '9.0.1' }])).to.equal(false);
+    });
+    it('(验证order)chrome不合法', () => {
+        expect(browserParser([{ name: 'Chrome', version: '50' }], undefined, true)).to.equal(true);
     });
 });
