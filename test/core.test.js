@@ -79,7 +79,4 @@ describe('browserParser', () => {
     it('9.0.1合法', () => {
         expect(browserParser([{ name: 'IE', version: '9.0.1' }])).to.equal(false);
     });
-    it('(验证order)chrome不合法', () => {
-        expect(browserParser([{ name: 'Chrome', version: '50' }], undefined, true)).to.equal(true);
-    });
 });

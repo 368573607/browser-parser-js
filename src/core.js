@@ -71,28 +71,22 @@ function compareUa(version) {
  * @param {boolean} older 如何处理其他浏览器版本，true将将其设置为违规，false将将其设置为合法，默认false
  * @return {boolean}
  */
-function browserParser(rules, href = 'https://browsehappy.com/', order = false) {
+function browserParser(rules, href = 'https://browsehappy.com/') {
     function verify() {
-        return (rules.every((x) => (browserNames.includes(x.name)))
-            && rules.some((x) => (x.name === userBrowser.name)))
-            || order;
+        return rules.every((x) => (browserNames.includes(x.name)))
+            && rules.some((x) => (x.name === userBrowser.name));
     }
     if (!verify()) throw new BrowserParserError('rules参数错误');
 
-    for (const rule of rules) {
-        if (rule.name === userBrowser.name && compareUa(rule.version)) {
-            if (!notHaveWindow) {
-                window.location.href = href;
-            } else {
-                return true;
-            }
+    function link() {
+        if (!notHaveWindow) {
+            window.location.href = href;
         }
     }
 
-    if (!rules.every((x) => (x.name === userBrowser.name)) && order) {
-        if (!notHaveWindow) {
-            window.location.href = href;
-        } else {
+    for (const rule of rules) {
+        if (rule.name === userBrowser.name && compareUa(rule.version)) {
+            link();
             return true;
         }
     }
