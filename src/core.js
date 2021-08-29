@@ -64,8 +64,7 @@ function compareUa(version) {
  */
 function browserParser(rules, href = 'https://browsehappy.com/') {
     function verify() {
-        return rules.every((x) => (browserNames.includes(x.name)))
-            && rules.some((x) => (x.name === userBrowser.name));
+        return rules.every((x) => (browserNames.includes(x.name)));
     }
     if (!verify()) throw new BrowserParserError('rules参数错误');
 
