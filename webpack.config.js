@@ -18,6 +18,12 @@ module.exports = {
     },
     devtool: 'source-map',
     mode: 'production',
+    module: {
+        rules: [{
+            test: /\.js$/,
+            use: 'babel-loader',
+        }],
+    },
     optimization: {
         minimizer: [new UglifyJsPlugin({
             include: 'browser-parser.min.js',
