@@ -12,7 +12,13 @@
     <h1>Hello, World!</h1>
     <script src="../dist/browser-parser.min.js"></script>
     <script>
-        browserParser();
+        console.log(browserParser([{
+            name: 'IE',
+            version:'12'
+        },{
+            name:'Chrome',
+            version:'100'
+        }], undefined, true));
     </script>
 </body>
 
