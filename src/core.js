@@ -4,24 +4,15 @@ const notHaveWindow = typeof (window) === 'undefined';
 const browserNames = ['2345Explorer', '360 Browser', 'Amaya', 'Android Browser', 'Arora', 'Avant', 'Avast', 'AVG', 'BIDUBrowser', 'Baidu', 'Basilisk', 'Blazer', 'Bolt', 'Brave', 'Bowser', 'Camino', 'Chimera', 'Chrome Headless', 'Chrome WebView', 'Chrome', 'Chromium', 'Comodo Dragon', 'Dillo', 'Dolphin', 'Doris', 'Edge', 'Electron', 'Epiphany', 'Facebook', 'Falkon', 'Fennec', 'Firebird', 'Firefox [Reality]', 'Flock', 'Flow', 'GSA', 'GoBrowser', 'ICE Browser', 'IE', 'IEMobile', 'IceApe', 'IceCat', 'IceDragon', 'Iceweasel', 'Instagram', 'Iridium', 'Iron', 'Jasmine', 'K-Meleon', 'Kindle', 'Konqueror', 'LBBROWSER', 'Line', 'Links', 'Lunascape', 'Lynx', 'MIUI Browser', 'Maemo Browser', 'Maemo', 'Maxthon', 'MetaSr Midori', 'Minimo', 'Mobile Safari', 'Mosaic', 'Mozilla', 'NetFront', 'NetSurf', 'Netfront', 'Netscape', 'NokiaBrowser', 'Oculus Browser', 'OmniWeb', 'Opera Coast', 'Opera [Mini/Mobi/Tablet]', 'PaleMoon', 'PhantomJS', 'Phoenix', 'Polaris', 'Puffin', 'QQ', 'QQBrowser', 'QQBrowserLite', 'Quark', 'QupZilla', 'RockMelt', 'Safari', 'Sailfish Browser', 'Samsung Browser', 'SeaMonkey', 'Silk', 'Skyfire', 'Sleipnir', 'Slim', 'SlimBrowser', 'Swiftfox', 'Tesla', 'Tizen Browser', 'UCBrowser', 'Vivaldi', 'Waterfox', 'WeChat', 'Weibo', 'Yandex', 'baidu', 'iCab', 'w3m', 'Whale Browser'];
 const userBrowser = new UaParser(notHaveWindow ? 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident/5.0)' : undefined).getBrowser();
 
+if (userBrowser.version.split('.').length > 3) {
+    userBrowser.version = userBrowser.version.split('.').slice(0, 3).join('.');
+}
+
 class BrowserParserError extends Error {
     constructor(message) {
         super(message);
         this.name = 'BrowserParserError';
     }
-}
-
-/**
- * 得到主版本号、次版本号和修订版本号
- * @param {string} version 提供的版本号
- */
-function getVersion(version) {
-    const res = version.split('.');
-    return {
-        large: res[0],
-        middle: res[1],
-        small: res[2],
-    };
 }
 
 /**
@@ -85,7 +76,7 @@ function browserParser(rules, href = 'https://browsehappy.com/') {
     }
 
     for (const rule of rules) {
-        if (rule.name === userBrowser.name && compareUa(rule.version)) {
+        if (rule.name === userBrowser.name && !compareUa(rule.version)) {
             link();
             return true;
         }
@@ -94,7 +85,6 @@ function browserParser(rules, href = 'https://browsehappy.com/') {
 }
 
 module.exports = {
-    getVersion,
     reVersion,
     rangeVersion,
     compareUa,

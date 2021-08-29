@@ -1,22 +1,7 @@
 const { expect } = require('chai');
 const {
-    getVersion, reVersion, rangeVersion, compareUa, browserParser,
+    reVersion, rangeVersion, compareUa, browserParser,
 } = require('../src/core');
-
-describe('getVersion', () => {
-    it('1.2.3的版本验证', () => {
-        const res = getVersion('1.2.3');
-        expect(res.small).to.equal('3');
-        expect(res.middle).to.equal('2');
-        expect(res.large).to.equal('1');
-    });
-    it('100.9976.100000的版本验证', () => {
-        const res = getVersion('100.9976.100000');
-        expect(res.small).to.equal('100000');
-        expect(res.middle).to.equal('9976');
-        expect(res.large).to.equal('100');
-    });
-});
 
 describe('reVersion', () => {
     it('重置8', () => {
@@ -31,7 +16,7 @@ describe('reVersion', () => {
 });
 
 describe('rangeVersion', () => {
-    it('比较1.2.3和2.2.3', () => {
+    it('比较1.2.99.28和2.2.3', () => {
         expect(rangeVersion('1.2.3', '2.2.3')).to.equal(false);
     });
     it('比较2.2.3和1.2.3', () => {
@@ -67,16 +52,25 @@ describe('compareUa', () => {
 });
 
 describe('browserParser', () => {
-    it('8违规', () => {
-        expect(browserParser([{ name: 'Chrome', version: '50.3.4' }, { name: 'IE', version: '8' }])).to.equal(true);
+    it('8合法', () => {
+        expect(browserParser([{ name: 'Chrome', version: '50.3.4' }, { name: 'IE', version: '8' }])).to.equal(false);
     });
-    it('9违规', () => {
-        expect(browserParser([{ name: 'IE', version: '9' }])).to.equal(true);
+    it('9合法', () => {
+        expect(browserParser([{ name: 'IE', version: '9' }])).to.equal(false);
     });
-    it('10合法', () => {
-        expect(browserParser([{ name: 'IE', version: '10' }])).to.equal(false);
+    it('10违规', () => {
+        expect(browserParser([{ name: 'IE', version: '10' }])).to.equal(true);
     });
-    it('9.0.1合法', () => {
-        expect(browserParser([{ name: 'IE', version: '9.0.1' }])).to.equal(false);
+    it('9.0.1违规', () => {
+        expect(browserParser([{ name: 'IE', version: '9.0.1' }])).to.equal(true);
+    });
+    it('9.0.1.5违规', () => {
+        expect(browserParser([{ name: 'IE', version: '9.0.1.5' }])).to.equal(true);
+    });
+    it('8.999.999合法', () => {
+        expect(browserParser([{ name: 'IE', version: '8.999.999' }])).to.equal(true);
+    });
+    it('8.999.999.999合法', () => {
+        expect(browserParser([{ name: 'IE', version: '8.999.999.999' }])).to.equal(true);
     });
 });
