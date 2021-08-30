@@ -1,7 +1,7 @@
 {
   "name": "browser-parser-js",
-  "version": "1.0.1",
-  "main": "./dist/browser-parser.js",
+  "version": "1.0.2",
+  "main": "./src/index.js",
   "repository": "git@github.com:368573607/browser-parser-js.git",
   "author": "xuhuading(mac) <xuhuading@foxmail.com>",
   "license": "MIT",
@@ -10,7 +10,8 @@
     "test": "mocha"
   },
   "files": [
-    "./dist"
+    "./dist",
+    "./src"
   ],
   "dependencies": {
     "ua-parser-js": "^0.7.28"
