@@ -1,6 +1,6 @@
 {
   "name": "browser-parser-js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "./dist/browser-parser.js",
   "repository": "git@github.com:368573607/browser-parser-js.git",
   "author": "xuhuading(mac) <xuhuading@foxmail.com>",
@@ -9,6 +9,9 @@
     "build": "webpack",
     "test": "mocha"
   },
+  "files": [
+    "./dist"
+  ],
   "dependencies": {
     "ua-parser-js": "^0.7.28"
   },
