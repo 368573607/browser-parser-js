@@ -11,10 +11,8 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].js',
-        library: {
-            name: 'browserParser',
-            type: 'umd',
-        },
+        library: 'browserParser',
+        libraryTarget: 'umd',
     },
     devtool: 'source-map',
     mode: 'production',
